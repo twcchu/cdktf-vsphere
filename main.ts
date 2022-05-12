@@ -1,4 +1,4 @@
-import { App, RemoteBackend, TerraformStack } from "cdktf";
+import { App, TerraformStack } from "cdktf";
 import { MyStack } from "./stack";
 // import * as rl from "readline-sync";
 
@@ -48,11 +48,11 @@ const app = new CdktfVsphereApp();
 //   user: un,
 //   password: pw,
 // });
-new RemoteBackend(app.getStack(), {
-  hostname: "app.terraform.io",
-  organization: "bw-systems",
-  workspaces: {
-    name: "cdktf-vsphere"
-  },
-});
+// new RemoteBackend(app.getStack(), {
+//   hostname: "app.terraform.io",
+//   organization: "bw-systems",
+//   workspaces: {
+//     name: "cdktf-vsphere"
+//   },
+// });
 app.synth();
