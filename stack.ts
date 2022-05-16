@@ -7,7 +7,13 @@ import * as vsphere from "./.gen/providers/vsphere";
 
 interface cdktfVsphereProps {
   user: string,
-  password: string
+  password: string,
+  datacenter: string,
+  datastoreCluster: string,
+  network: string,
+  rp_name: string,
+  template: string,
+  vm_name: string,
 }
 
 export class MyStack extends TerraformStack {
@@ -27,32 +33,33 @@ export class MyStack extends TerraformStack {
       this,
       "datacenter",
       {
-        name: "lab",
+        name: props.datacenter,
       }
     );
 
-    const datastore = new vsphere.DataVsphereDatastore(this, "datastore", {
-      name: "vsphere_lab2_vsidata_ds_1",
-      datacenterId: datacenter.id,
+    const datastoreCluster =
+      new vsphere.DataVsphereDatastoreCluster(this, "datastore", {
+        datacenterId: datacenter.id,
+        name: props.datastoreCluster,
     });
 
     const network = new vsphere.DataVsphereNetwork(this, "network", {
       datacenterId: datacenter.id,
-      name: "LAB1-DC-APP7",
+      name: props.network,
     });
 
     const resourcepool = new vsphere.DataVsphereResourcePool(this, "pool", {
       datacenterId: datacenter.id,
-      name: "rp-team-systems_platform",
+      name: props.rp_name,
     });
 
     const template_vm = new vsphere.DataVsphereVirtualMachine(this, "template_vm", {
-      name: "packer-centos-7",
+      name: props.template,
       datacenterId: datacenter.id,
     })
 
     new vsphere.VirtualMachine(this, "vm", {
-      datastoreId: datastore.id,
+      datastoreClusterId: datastoreCluster.id,
       disk: [
         {
           label: "disk0",
@@ -60,7 +67,7 @@ export class MyStack extends TerraformStack {
         },
       ],
       guestId: template_vm.guestId,
-      name: "hello",
+      name: props.vm_name,
       networkInterface: [
         {
           networkId: network.id,

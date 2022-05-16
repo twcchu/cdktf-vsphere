@@ -1,6 +1,6 @@
 import { App, TerraformStack } from "cdktf";
 import { MyStack } from "./stack";
-import { vSphereCredentials } from "./configs";
+import * as configs from "./configs";
 
 class CdktfVsphereApp extends App {
 
@@ -10,8 +10,14 @@ class CdktfVsphereApp extends App {
     super();
 
     this._stack = new MyStack(this, "cdktf-vsphere", {
-      user: vSphereCredentials.username,
-      password: vSphereCredentials.password,
+      user: configs.userConfigs.username,
+      password: configs.userConfigs.password,
+      datacenter: configs.labEnvInfo.datacenter,
+      datastoreCluster: configs.labEnvInfo.datastoreCluster,
+      network: configs.labEnvInfo.network,
+      rp_name: configs.userConfigs.resourcePool,
+      template: configs.userConfigs.template,
+      vm_name: configs.userConfigs.VMName,
     });
   }
 
@@ -21,11 +27,4 @@ class CdktfVsphereApp extends App {
 }
 
 const app = new CdktfVsphereApp();
-// new RemoteBackend(app.getStack(), {
-//   hostname: "app.terraform.io",
-//   organization: "bw-systems",
-//   workspaces: {
-//     name: "cdktf-vsphere"
-//   },
-// });
 app.synth();
