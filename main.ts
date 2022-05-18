@@ -18,6 +18,7 @@ class CdktfVsphereApp extends App {
       rp_name: configs.userConfigs.resourcePool,
       template: configs.userConfigs.template,
       vm_name: configs.userConfigs.VMName,
+      disks: configs.userConfigs.disks,
       cdktf_options: {
         tfcloud_workspace: configs.userConfigs.tfcloudWorkspace,
       },

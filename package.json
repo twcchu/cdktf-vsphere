@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "cdktf": "^0.10.4",
+    "cdktf-cli": "^0.10.4",
     "constructs": "^10.1.4",
     "readline-sync": "^1.4.10"
   },

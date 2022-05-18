@@ -5,6 +5,12 @@ export const userConfigs = {
   template: "packer-centos-7",
   VMName: "cdktf",
   tfcloudWorkspace: "cdktf-vsphere",
+  disks: [
+    {
+      label: "disk0",
+      size: 32,
+    },
+  ],
 };
 
 export const labEnvInfo = {
