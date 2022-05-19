@@ -14,16 +14,27 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "upgrade": "npm i cdktf@latest cdktf-cli@latest",
-    "upgrade:next": "npm i cdktf@next cdktf-cli@next"
+    "upgrade:next": "npm i cdktf@next cdktf-cli@next",     
+    "lint": "eslint . --ext .ts",
+    "fix": "eslint . --fix --ext .ts"
   },
   "engines": {
     "node": ">=14.0"
   },
   "dependencies": {
+    "@types/jest": "^27.5.1",
     "cdktf": "^0.10.4",
     "cdktf-cli": "^0.10.4",
     "constructs": "^10.1.4",
-    "readline-sync": "^1.4.10"
+    "jest": "^28.1.0",
+    "readline-sync": "^1.4.10",
+    "ts-jest": "^28.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.12.1",
+    "@typescript-eslint/parser": "^5.12.1",
+    "eslint": "^8.10.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^26.1.1",
+    "eslint-plugin-simple-import-sort": "^7.0.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.31",
