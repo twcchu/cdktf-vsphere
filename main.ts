@@ -1,6 +1,7 @@
-import { App, TerraformStack } from "cdktf";
-import { MyStack } from "./stack";
-import * as configs from "./configs";
+import { App, TerraformStack } from 'cdktf';
+
+import * as configs from './configs';
+import { MyStack } from './stack';
 
 class CdktfVsphereApp extends App {
 
@@ -9,7 +10,7 @@ class CdktfVsphereApp extends App {
   constructor() {
     super();
 
-    this._stack = new MyStack(this, "cdktf-vsphere", {
+    this._stack = new MyStack(this, 'cdktf-vsphere', {
       user: configs.userConfigs.username,
       password: configs.userConfigs.password,
       datacenter: configs.labEnvInfo.datacenter,
